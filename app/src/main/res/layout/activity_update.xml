@@ -1,9 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg2"
+    android:padding="10dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:gravity="center"
+            android:text="更改读者借书记录"
+            android:textSize="30sp"
+            android:textColor="#516D2C"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/userupd"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="50dp"
+                android:src="@drawable/id"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="学号："
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/et_idupdate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="请输入要修改的读者学号"
+                android:background="@drawable/editext_selector"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:inputType="text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="left|center"
+                android:maxLength="6"
+                android:paddingLeft="5dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="50dp"
+                android:src="@drawable/isbn2"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="旧书条码："
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/et_oisbnupdate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="请输入更改前的书条码"
+                android:background="@drawable/editext_selector"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:inputType="text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="left|center"
+                android:maxLength="6"
+                android:paddingLeft="5dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="50dp"
+                android:src="@drawable/isbn"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="新书条码："
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:id="@+id/et_nisbnupdate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="请输入更改后的书条码"
+                android:background="@drawable/editext_selector"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:inputType="text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="left|center"
+                android:maxLength="6"
+                android:paddingLeft="5dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_update"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="修改"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:background="@drawable/btn_selector"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_returnupdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_selector"
+        android:text="退出"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+</RelativeLayout>

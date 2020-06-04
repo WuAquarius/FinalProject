@@ -72,10 +72,10 @@ public class DeleteActivity extends AppCompatActivity implements View.OnClickLis
                 }
             });
 
-            if (result == null){
-                Toast.makeText(DeleteActivity.this,"不存在该记录，删除失败。",Toast.LENGTH_SHORT).show();
-            }else {
-                Toast.makeText(DeleteActivity.this,"删除成功",Toast.LENGTH_SHORT).show();
+            if (result == null) {
+                Toast.makeText(DeleteActivity.this, "不存在该记录，删除失败。", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(DeleteActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
             }
             // 取消删除
             builder.setNegativeButton("我再想想", new DialogInterface.OnClickListener() {

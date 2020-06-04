@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/btn_selector"
-        android:text="返回"
+        android:text="退出"
         android:textColor="#000000"
         android:textSize="20sp" />
 </RelativeLayout>

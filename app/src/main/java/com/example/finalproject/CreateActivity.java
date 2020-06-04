@@ -24,13 +24,13 @@ import java.util.Map;
 @SuppressWarnings("all")
 public class CreateActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText et_idcreate;
-    private EditText et_namecreat;
-    private AutoCompleteTextView et_majorcreate;
-    private EditText et_isbncreate;
+    private EditText et_idcreate;                   // 学号
+    private EditText et_namecreat;                  // 姓名
+    private AutoCompleteTextView et_majorcreate;    // 专业
+    private EditText et_isbncreate;                 // 书条码
 
-    private Button bt_create;
-    private Button bt_returncreate;
+    private Button bt_create;       // 添加
+    private Button bt_returncreate; // 退出
 
     // 定义自动完成的提示文本数组
     private String[] majorArray = {"软件工程", "计算机科学与技术", "网络工程", "物联网"};
