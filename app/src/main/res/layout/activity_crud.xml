@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="选择要进行的数据操作"
+            android:textSize="25sp"
+            android:textColor="#516D2C"
+            android:layout_margin="20dp"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/logo2"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/bt_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="添加"
+            android:background="@drawable/btn_selector"
+            android:textSize="20sp"
+            android:layout_margin="10dp"/>
+        <Button
+            android:id="@+id/bt_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="修改"
+            android:background="@drawable/btn_selector"
+            android:textSize="20sp"
+            android:layout_margin="10dp"/>
+        <Button
+            android:id="@+id/bt_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:background="@drawable/btn_selector"
+            android:textSize="20sp"
+            android:layout_margin="10dp"/>
+        <Button
+            android:id="@+id/bt_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="查看借书记录"
+            android:background="@drawable/btn_selector"
+            android:textSize="20sp"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>
