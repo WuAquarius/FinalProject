@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.example.finalproject.util.HttpURLConn;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +30,6 @@ public class DeleteActivity extends AppCompatActivity implements View.OnClickLis
     private EditText et_isbndrop;
     private Button bt_delete;
     private Button bt_returndrop;
-    private String result = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,22 +63,35 @@ public class DeleteActivity extends AppCompatActivity implements View.OnClickLis
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            String url = HttpURLConn.BASE_URL + "/studentDelServlet";
+                            String url = HttpURLConn.BASE_URL + "/studentDelete";
                             Map<String, String> params = new HashMap<>();
                             params.put("iddel", iddel);
                             params.put("isbndel", isbndel);
-                            result = HttpURLConn.getContextByHttp(url, params);
+                            String result = HttpURLConn.getContextByHttp(url, params);
                             System.out.println(result);
+
+                            JSONObject jsonObject = null;
+                            int code = 0;
+                            try {
+                                jsonObject = new JSONObject(result);
+                                code = Integer.parseInt(jsonObject.getString("code"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            if (code == 1){
+                                Toast.makeText(DeleteActivity.this,"删除成功",Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(DeleteActivity.this,"删除失败",Toast.LENGTH_SHORT).show();
+                            }
+
+
                         }
                     }).start();
                 }
             });
 
-            if (result == null) {
-                Toast.makeText(DeleteActivity.this, "不存在该记录，删除失败。", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(DeleteActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
-            }
+
             // 取消删除
             builder.setNegativeButton("我再想想", new DialogInterface.OnClickListener() {
                 @Override

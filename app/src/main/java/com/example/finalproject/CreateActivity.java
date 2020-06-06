@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import com.example.finalproject.util.HttpURLConn;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,18 +77,33 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String url = HttpURLConn.BASE_URL + "/studentInsertServlet";
+                        String url = HttpURLConn.BASE_URL + "/studentInsert";
                         Map<String, String> params = new HashMap<>();
                         params.put("id", id);
                         params.put("name", name);
                         params.put("major", major);
                         params.put("isbn", isbn);
-                        String resule = HttpURLConn.getContextByHttp(url, params);
-                        System.out.println(resule);
+                        String result = HttpURLConn.getContextByHttp(url, params);
+                        System.out.println(result);
+
+                        JSONObject jsonObject = null;
+                        int code = 0;
+                        try {
+                            jsonObject = new JSONObject(result);
+                            code = Integer.parseInt(jsonObject.getString("code"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (code == 1){
+                            showToast("添加成功");
+                        }else {
+                            showToast("添加失败");
+                        }
+
                     }
                 }).start();
 
-                showToast("添加成功");
                 // 清除文本框
                 et_idcreate.getText().clear();
                 et_namecreat.getText().clear();

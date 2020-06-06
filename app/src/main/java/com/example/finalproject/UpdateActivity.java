@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.example.finalproject.util.HttpURLConn;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,13 +65,29 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String url = HttpURLConn.BASE_URL + "/studentInsertServlet";
+                        String url = HttpURLConn.BASE_URL + "/studentUpdate";
                         Map<String, String> params = new HashMap<>();
                         params.put("id", id);
                         params.put("oisbn", oisbn);
                         params.put("nisbn", nisbn);
                         result = HttpURLConn.getContextByHttp(url, params);
                         System.out.println(result);
+
+                        JSONObject jsonObject = null;
+                        int code = 0;
+                        try {
+                            jsonObject = new JSONObject(result);
+                            code = Integer.parseInt(jsonObject.getString("code"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (code == 1){
+                            Toast.makeText(UpdateActivity.this,"删除成功",Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(UpdateActivity.this,"删除失败",Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 }).start();
 
@@ -77,11 +96,6 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
                 et_oisbnupdate.getText().clear();
                 et_nisbnupdate.getText().clear();
 
-                if (result == null){
-                    showToast("更改失败");
-                }else {
-                    showToast("更改成功");
-                }
             }
         } else if (v.getId() == R.id.bt_returnupdate) {
             Intent intent = new Intent(); // 创建一个新意图

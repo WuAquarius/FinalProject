@@ -25,6 +25,7 @@ import java.util.Map;
 /**
  * @author wunu
  */
+@SuppressWarnings("all")
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText et_username;

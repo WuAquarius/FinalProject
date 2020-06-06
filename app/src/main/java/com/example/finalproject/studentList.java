@@ -61,7 +61,7 @@ public class studentList extends AppCompatActivity implements View.OnClickListen
             public void run() {
                 String url = HttpURLConn.BASE_URL + "/studentQuery";
                 Map<String, String> params = new HashMap<>();
-                params.put("flag", "1");
+                // params.put("flag", "1");
                 params.put("key", "");
                 String resule = HttpURLConn.getContextByHttp(url, params);
 
@@ -121,7 +121,7 @@ public class studentList extends AppCompatActivity implements View.OnClickListen
                     public void run() {
                         String url = HttpURLConn.BASE_URL + "/studentQuery";
                         Map<String,String> params = new HashMap<>();
-                        params.put("flag","1");
+                        // params.put("flag","1");
                         params.put("key",find);
                         String result = HttpURLConn.getContextByHttp(url, params);
 

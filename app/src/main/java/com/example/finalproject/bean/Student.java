@@ -7,6 +7,9 @@ import java.io.Serializable;
  */
 @SuppressWarnings("all")
 public class Student implements Serializable {
+    // 声明一个序列化号
+    private static final long serialVersionUID = -4392658638228508589L;
+
     private String  id;     // 学号
     private String name;    // 姓名
     private String major;   // 专业
