@@ -24,7 +24,7 @@ public class HttpURLConn {
     // 项目服务器的地址
     //这里的ip地址，设置为自己网络的ip地址，这里注意，eclisp也就是电脑上面的网络应该和手机连接的网处于同一个网络
     // JSPStudy是自己eclisp上面的学生信息管理的java项目
-    public static String BASE_URL = "http://192.168.43.128:8080/JSPStudy";
+    public static String BASE_URL = "http://192.168.0.107:8080/FinalProject2_war";
 
     /**
      * urlStr:网址
