@@ -1,10 +1,13 @@
 package com.example.finalproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.finalproject.util.HideInputMethod;
 import com.example.finalproject.util.HttpURLConn;
 
 import org.json.JSONException;
@@ -48,11 +52,13 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         et_majorcreate = findViewById(R.id.et_majorcreate);
         et_isbncreate = findViewById(R.id.et_isbncreate);
 
-        bt_create.findViewById(R.id.bt_create).setOnClickListener(this);
-        bt_returncreate.findViewById(R.id.bt_returncreate).setOnClickListener(this);
+        bt_create = findViewById(R.id.bt_create);
+        bt_create.setOnClickListener(this);
+        bt_returncreate = findViewById(R.id.bt_returncreate);
+        bt_returncreate.setOnClickListener(this);
 
         // 声明一个自动完成时下拉展示的数组适配器
-        ArrayAdapter<String> majorAdapter = new ArrayAdapter<String>(this, R.layout.item_dropdown, majorArray);
+        ArrayAdapter<String> majorAdapter = new ArrayAdapter<String>(CreateActivity.this, R.layout.item_dropdown, majorArray);
         // 设置自动完成编辑框的数组适配器
         et_majorcreate.setAdapter(majorAdapter);
 
@@ -61,6 +67,10 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.bt_create) {
+
+            // 点击按钮后会自动隐藏软键盘
+            HideInputMethod.hideAllInputMethod(this);
+
             final String id = et_idcreate.getText().toString().trim();
             final String name = et_namecreat.getText().toString().trim();
             final String major = et_majorcreate.getText().toString().trim();
@@ -84,23 +94,13 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
                         params.put("major", major);
                         params.put("isbn", isbn);
                         String result = HttpURLConn.getContextByHttp(url, params);
-                        System.out.println(result);
-
-                        JSONObject jsonObject = null;
-                        int code = 0;
-                        try {
-                            jsonObject = new JSONObject(result);
-                            code = Integer.parseInt(jsonObject.getString("code"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        if (code == 1){
-                            showToast("添加成功");
-                        }else {
-                            showToast("添加失败");
-                        }
-
+                        System.out.println("====================" + result);
+                        Message msg = new Message();
+                        msg.what = 0x11;
+                        Bundle data = new Bundle();
+                        data.putString("result",result);
+                        msg.setData(data);
+                        handler.sendMessage(msg);
                     }
                 }).start();
 
@@ -118,6 +118,22 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void showToast(String desc) {
-        Toast.makeText(this, desc, Toast.LENGTH_SHORT).show();
+        Toast.makeText(CreateActivity.this, desc, Toast.LENGTH_SHORT).show();
     }
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            if (msg.what == 0x11){
+                Bundle date = msg.getData();
+                String result = date.getString("result");
+                int i = Integer.parseInt(result);
+                if (i == 1){
+                    showToast("添加成功");
+                }else {
+                    showToast("添加失败");
+                }
+            }
+        }
+    };
 }

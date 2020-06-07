@@ -24,7 +24,7 @@ public class HttpURLConn {
     // 项目服务器的地址
     //这里的ip地址，设置为自己网络的ip地址，这里注意，eclisp也就是电脑上面的网络应该和手机连接的网处于同一个网络
     // JSPStudy是自己eclisp上面的学生信息管理的java项目
-    public static String BASE_URL = "http://192.168.0.107:8080/FinalProject2_war";
+    public static String BASE_URL = "http://192.168.0.107:8080/FinalProject2_war_exploded";
 
     /**
      * urlStr:网址
@@ -60,8 +60,8 @@ public class HttpURLConn {
             writer.write(getStringFormOutput(parms));
 
             // 控制台输出查看参数
-            System.out.println(getStringFormOutput(parms));
-            System.out.println(parms);
+            System.out.println("1" + getStringFormOutput(parms));
+            System.out.println("2" + parms);
 
             // 关闭流
             writer.flush();
@@ -72,12 +72,14 @@ public class HttpURLConn {
             // 获取HTTP返回码
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK){
                 // 获取HTTP输入流
+                System.out.println("======================获取HTTP输入流================");
                 InputStream in = conn.getInputStream();
-                InputStreamReader isr = new InputStreamReader(in,StandardCharsets.UTF_8);
+                InputStreamReader isr = new InputStreamReader(in);
                 BufferedReader reader = new BufferedReader(isr);
                 String line;
                 while ((line = reader.readLine()) != null){
                     result.append(line);
+                    System.out.println(reader.readLine());
                 }
             }else {
                 return "error:0";
@@ -91,6 +93,7 @@ public class HttpURLConn {
             e.printStackTrace();
         }
 
+        System.out.println("result的结果" + result.toString());
         return result.toString();
     }
 

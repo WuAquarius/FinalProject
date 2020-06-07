@@ -126,13 +126,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Bundle data = msg.getData();
                 String key = data.getString("result");
                 // 输出用户名密码
-                System.out.println(key);
+                System.out.println("输出用户名密码" + key);
 
                 // 利用安卓自带的JSON解析器进行解析
                 try {
                     JSONObject json = new JSONObject(key);
                     int code = Integer.parseInt(json.getString("code"));
-                    System.out.println(code);
                     if (code == 1){
                         Toast.makeText(LoginActivity.this,"登录成功！",Toast.LENGTH_SHORT).show();
                         // 进行页面跳转

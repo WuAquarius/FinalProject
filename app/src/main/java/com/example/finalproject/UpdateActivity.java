@@ -1,17 +1,20 @@
 package com.example.finalproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.finalproject.util.HideInputMethod;
 import com.example.finalproject.util.HttpURLConn;
 
 import org.json.JSONException;
@@ -40,17 +43,23 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
-        et_idupdate = findViewById(R.id.et_idcreate);
+        et_idupdate = findViewById(R.id.et_idupdate);
         et_oisbnupdate = findViewById(R.id.et_oisbnupdate);
         et_nisbnupdate = findViewById(R.id.et_nisbnupdate);
 
-        bt_update.findViewById(R.id.bt_update).setOnClickListener(this);
-        bt_returnupdate.findViewById(R.id.bt_returnupdate).setOnClickListener(this);
+        bt_update = findViewById(R.id.bt_update);
+        bt_update.setOnClickListener(this);
+        bt_returnupdate = findViewById(R.id.bt_returnupdate);
+        bt_returnupdate.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.bt_update) {
+
+            // 点击按钮后会自动隐藏软键盘
+            HideInputMethod.hideAllInputMethod(this);
+
             final String id = et_idupdate.getText().toString().trim();
             final String oisbn = et_oisbnupdate.getText().toString().trim();
             final String nisbn = et_nisbnupdate.getText().toString().trim();
@@ -60,7 +69,7 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
             } else if (TextUtils.isEmpty(oisbn)) {
                 showToast("旧书条码不能为空");
             } else if (TextUtils.isEmpty(nisbn)) {
-                showToast("新条码不能为空");
+                showToast("新书条码不能为空");
             } else {
                 new Thread(new Runnable() {
                     @Override
@@ -73,25 +82,17 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
                         result = HttpURLConn.getContextByHttp(url, params);
                         System.out.println(result);
 
-                        JSONObject jsonObject = null;
-                        int code = 0;
-                        try {
-                            jsonObject = new JSONObject(result);
-                            code = Integer.parseInt(jsonObject.getString("code"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        if (code == 1){
-                            Toast.makeText(UpdateActivity.this,"删除成功",Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(UpdateActivity.this,"删除失败",Toast.LENGTH_SHORT).show();
-                        }
+                        Message msg = new Message();
+                        msg.what = 0x11;
+                        Bundle date = new Bundle();
+                        date.putString("result",result);
+                        msg.setData(date);
+                        handler.sendMessage(msg);
 
                     }
                 }).start();
 
-                // 清除文本框
+                // 清除文本框内容
                 et_idupdate.getText().clear();
                 et_oisbnupdate.getText().clear();
                 et_nisbnupdate.getText().clear();
@@ -104,7 +105,29 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            Bundle data = msg.getData();
+            String result = data.getString("result");
+
+            // 利用安卓的JSON解析器进行解析
+            try {
+                JSONObject json = new JSONObject(result);
+                String code = json.getString("code");
+                int i = Integer.parseInt(code);
+                if (i == 1){
+                    showToast("修改成功");
+                }else {
+                    showToast("修改失败");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
     private void showToast(String desc) {
-        Toast.makeText(this, desc, Toast.LENGTH_SHORT).show();
+        Toast.makeText(UpdateActivity.this, desc, Toast.LENGTH_SHORT).show();
     }
 }

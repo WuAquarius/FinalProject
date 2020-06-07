@@ -28,7 +28,7 @@
             android:layout_gravity="center"/>
 
         <Button
-            android:id="@+id/bt_create"
+            android:id="@+id/bt_createe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="添加"
@@ -36,7 +36,7 @@
             android:textSize="20sp"
             android:layout_margin="10dp"/>
         <Button
-            android:id="@+id/bt_update"
+            android:id="@+id/bt_updatee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="修改"
@@ -44,7 +44,7 @@
             android:textSize="20sp"
             android:layout_margin="10dp"/>
         <Button
-            android:id="@+id/bt_delete"
+            android:id="@+id/bt_deletee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="删除"

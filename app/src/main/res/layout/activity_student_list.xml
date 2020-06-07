@@ -62,7 +62,7 @@
                 android:gravity="center"
                 android:text="学号"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -83,7 +83,7 @@
                 android:gravity="center"
                 android:text="姓名"
                 android:textColor="#FF0000"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -104,7 +104,7 @@
                 android:gravity="center"
                 android:text="专业"
                 android:textColor="#0000FF"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -125,7 +125,7 @@
                 android:gravity="center"
                 android:text="书条码"
                 android:textColor="#0000FF"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
 

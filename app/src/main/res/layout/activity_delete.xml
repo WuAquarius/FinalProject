@@ -58,7 +58,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="left|center"
-                android:maxLength="6"
+                android:maxLength="20"
                 android:paddingLeft="5dp"/>
         </LinearLayout>
 
@@ -94,7 +94,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="left|center"
-                android:maxLength="6"
+                android:maxLength="20"
                 android:paddingLeft="5dp"/>
         </LinearLayout>
 
