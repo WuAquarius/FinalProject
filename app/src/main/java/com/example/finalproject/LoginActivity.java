@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.finalproject.util.HttpURLConn;
@@ -36,6 +37,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // 用来存储记住的用户名和密码
     private SharedPreferences sp;
 
+    // 注册跳转
+    private TextView tv_register;
+
     public LoginActivity() {
     }
 
@@ -47,6 +51,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
         cb_remember = findViewById(R.id.cb_remember);
+
+        // 注册控件
+        tv_register = findViewById(R.id.tv_register);
+        tv_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         bt_login = findViewById(R.id.bt_login);
         bt_login.setOnClickListener(this);
@@ -96,7 +112,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("登录成功");
                 Map<String,String> params = new HashMap<>();
                 String uesrname = et_username.getText().toString().trim();
                 String password = et_password.getText().toString().trim();
