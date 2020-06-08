@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -32,6 +33,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText et_username;
     private EditText et_password;
     private Button bt_login;
+    private Button bt_qq;
+    private Button bt_wechat;
+    private Button bt_zhihu;
     private CheckBox cb_remember;
 
     // 用来存储记住的用户名和密码
@@ -52,8 +56,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         et_password = findViewById(R.id.et_password);
         cb_remember = findViewById(R.id.cb_remember);
 
+        // 登录
+        bt_login = findViewById(R.id.bt_login);
+        bt_login.setOnClickListener(this);
+
+        // 微信，QQ，知乎按钮控件
+        bt_qq = findViewById(R.id.bt_qq);
+        bt_qq.setOnClickListener(this);
+        bt_wechat = findViewById(R.id.bt_wechat);
+        bt_wechat.setOnClickListener(this);
+        bt_zhihu = findViewById(R.id.bt_zhihu);
+        bt_zhihu.setOnClickListener(this);
+
         // 注册控件
         tv_register = findViewById(R.id.tv_register);
+        // 点击注册事件
         tv_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,9 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        bt_login = findViewById(R.id.bt_login);
-        bt_login.setOnClickListener(this);
-
+        // 共享参数对象
         sp = getSharedPreferences("login",MODE_PRIVATE);
         boolean checked = sp.getBoolean("checked", false);
         if (checked){
@@ -82,8 +97,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.bt_login){
-            configLoginInfo(cb_remember.isChecked());
-            login();
+            String uesrname = et_username.getText().toString().trim();
+            String password = et_password.getText().toString().trim();
+            if (TextUtils.isEmpty(uesrname)){
+                showToast("用户名不能为空");
+            }else if (TextUtils.isEmpty(password)){
+                showToast("密码不能为空");
+            }else {
+                configLoginInfo(cb_remember.isChecked());
+                login();
+            }
+        }else if (v.getId() == R.id.bt_qq || v.getId() == R.id.bt_wechat || v.getId() == R.id.bt_zhihu){
+            showToast("你想多了！！");
         }
     }
 
@@ -148,13 +173,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     JSONObject json = new JSONObject(key);
                     int code = Integer.parseInt(json.getString("code"));
                     if (code == 1){
-                        Toast.makeText(LoginActivity.this,"登录成功！",Toast.LENGTH_SHORT).show();
+                        showToast("登录成功");
                         // 进行页面跳转
                         Intent intent = new Intent();
                         intent.setClass(LoginActivity.this,CRUDActivity.class);
                         startActivity(intent);
                     }else {
-                        Toast.makeText(LoginActivity.this,"用户名或者密码错误!",Toast.LENGTH_SHORT).show();
+                        showToast("用户名或者密码错误");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -162,4 +187,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         }
     };
+
+    private void showToast(String desc) {
+        Toast.makeText(LoginActivity.this, desc, Toast.LENGTH_SHORT).show();
+    }
 }

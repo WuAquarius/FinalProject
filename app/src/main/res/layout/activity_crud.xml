@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="添加"
+            android:textColor="#FFFFFF"
             android:background="@drawable/btn_selector"
             android:textSize="20sp"
             android:layout_margin="10dp"/>
@@ -40,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="修改"
+            android:textColor="#FFFFFF"
             android:background="@drawable/btn_selector"
             android:textSize="20sp"
             android:layout_margin="10dp"/>
@@ -48,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="删除"
+            android:textColor="#FFFFFF"
             android:background="@drawable/btn_selector"
             android:textSize="20sp"
             android:layout_margin="10dp"/>
@@ -56,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="查看借书记录"
+            android:textColor="#FFFFFF"
             android:background="@drawable/btn_selector"
             android:textSize="20sp"
             android:layout_margin="10dp"/>

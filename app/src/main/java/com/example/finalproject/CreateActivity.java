@@ -19,9 +19,6 @@ import android.widget.Toast;
 import com.example.finalproject.util.HideInputMethod;
 import com.example.finalproject.util.HttpURLConn;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 

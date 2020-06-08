@@ -59,7 +59,7 @@
                 android:layout_marginBottom="5dp"
                 android:gravity="left|center"
                 android:maxLength="6"
-                android:paddingLeft="5dp"/>
+                android:paddingLeft="10dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -95,7 +95,7 @@
                 android:layout_marginBottom="5dp"
                 android:gravity="left|center"
                 android:maxLength="6"
-                android:paddingLeft="5dp"/>
+                android:paddingLeft="10dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -131,7 +131,7 @@
                 android:layout_marginBottom="5dp"
                 android:gravity="left|center"
                 android:maxLength="6"
-                android:paddingLeft="5dp"/>
+                android:paddingLeft="10dp"/>
         </LinearLayout>
 
         <Button
@@ -141,7 +141,7 @@
             android:text="修改"
             android:gravity="center"
             android:textSize="20sp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:background="@drawable/btn_selector"
             android:layout_marginTop="10dp"/>
 
@@ -153,7 +153,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/btn_selector"
-        android:text="退出"
-        android:textColor="#000000"
+        android:text="返回"
+        android:textColor="#FFFFFF"
         android:textSize="20sp" />
 </RelativeLayout>

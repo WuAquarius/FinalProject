@@ -28,25 +28,25 @@
         <EditText
             android:id="@+id/et_username"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginTop="50dp"
             android:hint="请输入用户名"
             android:background="@drawable/editext_selector"
             android:textColor="#000000"
             android:inputType="text"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:textSize="20sp"/>
 
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="110dp"
             android:hint="请输入密码"
             android:background="@drawable/editext_selector"
             android:textColor="#000000"
             android:inputType="textPassword"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:textSize="20sp"/>
 
         <LinearLayout
@@ -92,9 +92,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="登录"
+            android:textColor="#FFFFFF"
             android:background="@drawable/btn_selector"
-            android:textSize="20sp"/>
+            android:textSize="23sp"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/bt_qq"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/qq2"
+            android:layout_gravity="bottom" />
+
+        <Button
+            android:id="@+id/bt_wechat"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/wechat2"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/bt_zhihu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/zhihu2"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"/>
     </LinearLayout>
 
 
